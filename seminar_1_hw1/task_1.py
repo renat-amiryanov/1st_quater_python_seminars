@@ -35,4 +35,4 @@ if is_holiday(number_day_of_week) == 'holiday':
 elif is_holiday(number_day_of_week) == 'busy-day':
     print(f'{number_day_of_week} -> нет')
 elif is_holiday(number_day_of_week) == 'dummy-day':
-    print(f'{number_day_of_week} -> такого номера дня недели не существует')
+    print(f'{number_day_of_week} -> такого номера дня недели не существует!')
