@@ -6,29 +6,26 @@
 # 1 -> нет
 
 
+def check_uset_input():
+    while True:
+        try:
+            value = int(input('Enter number: '))
+            break
+        except:
+            print("You must enter a digits!")
+    return value
+
+
 def is_holyday(day):
     if 1 <= day <= 5:
         return False
     elif 6 <= day <= 7:
         return True
-    
-
-def is_holyday2(day):
-    week_days = [1, 2, 3, 4, 5, 6, 7]
-    if day in week_days[0:4]:
-        return False
-    elif day in week_days[5:]:
-        return True
-    else:
-        return
 
 
-number_day_of_week = int(input('Введите цифру (от 1 до 7), обозначающую день недели: '))
-
+number_day_of_week = check_uset_input()
 
 if is_holyday(number_day_of_week):
     print(f'{number_day_of_week} -> да')
 else:
     print(f'{number_day_of_week} -> нет')
-
-
