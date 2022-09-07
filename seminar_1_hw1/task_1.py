@@ -6,26 +6,33 @@
 # 1 -> нет
 
 
-def check_uset_input():
+def check_user_input():
     while True:
         try:
-            value = int(input('Enter number: '))
+            value = int(input('Введите цифру, обозначающую день недели: '))
             break
         except:
-            print("You must enter a digits!")
+            print("Вы ввели не цифру!")
     return value
 
 
-def is_holyday(day):
+def is_holiday(day):
     if 1 <= day <= 5:
-        return False
+        return 'busy-day'
     elif 6 <= day <= 7:
-        return True
+        return 'holiday'
+    else:
+        return 'dummy-day'
 
 
-number_day_of_week = check_uset_input()
+print('''Программа, которая принимает на вход цифру, обозначающую день недели,
+и проверяет, является ли этот день выходным.''')
 
-if is_holyday(number_day_of_week):
+number_day_of_week = check_user_input()
+
+if is_holiday(number_day_of_week) == 'holiday':
     print(f'{number_day_of_week} -> да')
-else:
+elif is_holiday(number_day_of_week) == 'busy-day':
     print(f'{number_day_of_week} -> нет')
+elif is_holiday(number_day_of_week) == 'dummy-day':
+    print(f'{number_day_of_week} -> такого номера дня недели не существует')
