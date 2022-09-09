@@ -9,39 +9,25 @@ x = -34; y = -30 -> 3
 
 """
 
-
-# while point_X == 0 and point_Y == 0:
-point_X = int(input("Введите координату точки X: "))
-point_Y = int(input("Введите координату точки Y: "))
+point_x = int(input("Введите координату точки X: "))
+point_y = int(input("Введите координату точки Y: "))
 
 
-def set_coordinates():
-    points = []
-    points.append(int(input("Введите координату точки X: ")))
-    points.append(int(input("Введите координату точки Y: ")))
-    return  points
-
-print(set_coordinates())
-
-
-coordinates = [point_X, point_Y]
-
-
-def get_quarter(coords):
-    return coords[0], coords[1]
-
-data = get_quarter(coordinates)
-
-print(coordinates)
-print(type(data))
-exit()
-if point_X > 0 and point_Y > 0:
-    print(f'X = {point_X}; y = {point_Y} -> 1')
-elif point_X < 0 and point_Y > 0:
-    print(f'X = {point_X}; y = {point_Y} -> 2')
-elif point_X < 0 and point_Y < 0:
-    print(f'X = {point_X}; y = {point_Y} -> 3')
-elif point_X < 0 and point_Y < 0:
-    print(f'X = {point_X}; y = {point_Y} -> 4')
+def get_quarter(x, y):
+    if x > 0 and y > 0:
+        print(f'X = {x}; y = {y} -> 1')
+    elif x < 0 and y > 0:
+        print(f'X = {x}; y = {y} -> 2')
+    elif x < 0 and y < 0:
+        print(f'X = {x}; y = {y} -> 3')
+    elif x > 0 and y < 0:
+        print(f'X = {x}; y = {y} -> 4')
+    elif x == 0 and y != 0:
+        print(f'X = {x}; y = {y} -> Точка находится на оси Y')
+    elif x != 0 and y == 0:
+        print(f'X = {x}; y = {y} -> Точка находится на оси X')
+    else:
+        print(f'X = {x}; y = {y} -> Точка находится в начале координат')
 
 
+get_quarter(point_x, point_y)
