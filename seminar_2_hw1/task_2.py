@@ -35,5 +35,3 @@ def get_factorial_sequence(n):
 number = check_user_input()
 factorial_sequence = get_factorial_sequence(number)
 print(f'N = {number} -> {factorial_sequence}')
-
-
