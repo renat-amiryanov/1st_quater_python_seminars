@@ -23,13 +23,21 @@ def check_user_input(message='Enter a number, please: '):
 
 def calculate_sum(n):
     n = abs(n)
-    value = 0
-    while n > 0:
-        value += n % 10
+    total = 0
+    while n != 0:
+        total += n % 10
         n //= 10
-    return value
+    return int(total)
 
+
+def franken(value):
+    value = str(value).replace('.', '')
+    return int(value)
+
+
+print(f'{67.82} -> {calculate_sum(franken(67.82))}')
+print(f'{0.56} -> {calculate_sum(franken(0.56))}')
 
 number = check_user_input()
-print(calculate_sum(number))
+print(f'{number} -> {calculate_sum(franken(number))}')
 
