@@ -9,7 +9,7 @@ N = 4 -> [1, 2, 6, 24]
 """
 
 
-def check_user_input(message='Enter a numebr, please: '):
+def check_user_input(message='Enter a number, please: '):
     is_correct = False
     while not is_correct:
         try:
@@ -21,14 +21,19 @@ def check_user_input(message='Enter a numebr, please: '):
     return user_input
 
 
-number = check_user_input()
-
-
-def fact(n):
-    if n == 1:
+def factorial(n):
+    if n == 1 or n == 0:
         return 1
     else:
-        return
+        return n * factorial(n - 1)
 
 
-print(fact(number))
+def get_factorial_sequence(n):
+    return [factorial(i) for i in range(1, n + 1)]
+
+
+number = check_user_input()
+factorial_sequence = get_factorial_sequence(number)
+print(f'N = {number} -> {factorial_sequence}')
+
+
