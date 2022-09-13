@@ -4,25 +4,32 @@
 # Это происходит до тех пор, пока не будет найден палиндром.
 # Напишите такую программу, которая найдет палиндром введенного пользователем числа.
 
-def is_palindrome(number: int):
-    # Исключаем отрицительные числа, число 0, и числа 10, 20, ..., 100, ..., 110..
-    if number < 0 or (number != 0 and number % 10 == 0):
-        return False
-    revers = 0
-    while number > revers:
-        revers = revers * 10 + number % 10
-        number /= 10
-    return number == revers or number == revers / 10
-
-
 def reversing_number(input_value):
+    # Функция которая переворачивает число
     revers = 0
-    while input_value > revers:
+    while input_value > 0:
         revers = revers * 10 + input_value % 10
-        input_value /= 10
+        input_value //= 10
     return revers
 
 
-num = 10201
-print(is_palindrome(num))
+def is_palindrome(number):
+    # функция проверяющая является ли число палиндромом или нет
+    if number < 0 or (number != 0 and number % 10 == 0):
+        return False
+    return number == reversing_number(number) or number == reversing_number(number) // 10
 
+
+def display(num):
+    print(f'Число {num} {"является палиндромом." if is_palindrome(num) else "не является палиндромом."}')
+    while not is_palindrome(num):
+        revers = reversing_number(num)
+        print(f'Перевернутое число {revers} не равно исходному {num}')
+        print(f'Складываем исходное и перевернутое число и проверяются на палиндром еще раз.')
+        num = num + revers
+    print(f'Число {num} {"является палиндромом." if is_palindrome(num) else "не является палиндромом."}')
+
+
+num = int(input('Введите число для проверки палиндрома числа: '))
+
+display(num)
