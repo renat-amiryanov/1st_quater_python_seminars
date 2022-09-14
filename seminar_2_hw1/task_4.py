@@ -27,11 +27,13 @@ def random(start, end):
 
     if rand_number < start:
         rand_number += start
+    if rand_number > end:
+        rand_number =
     return rand_number
 
 
 for i in range(1, 10):
-    time.sleep(0.03)
+    time.sleep(0.003)
     print(random(70, 100), end=', ')
 
 
