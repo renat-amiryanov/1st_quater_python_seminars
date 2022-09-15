@@ -11,10 +11,14 @@ numbers = [2, 3, 5, 9, 1]
 
 
 def get_element_on_odd_indexes(value: list):
-    # функция возвращает список стоящих на нечетной позиции
+    """
+    Функция возвращает список элементов стоящих на нечетной позиции
+    :param value:
+    :return: Возвращает списко элементов
+    """
     elements = []
-    for i in numbers:
-        if not numbers.index(i) % 2 == 0:
+    for i in value:
+        if not value.index(i) % 2 == 0:
             elements.append(i)
     return elements
 
