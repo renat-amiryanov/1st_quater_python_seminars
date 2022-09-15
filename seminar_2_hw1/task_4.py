@@ -12,17 +12,22 @@ import time
 def random(start, end):
     """
     Custom generator of random integer number
-    :param start:
-    :param end:
-    :return: random number between start and end
+    :param start: Начало диапазона
+    :param end: Конец диапазона
+    :return: Случайное число в пределах заданного диапазона
     """
     is_in_range = False
 
     while not is_in_range:
         rand_number = time.time_ns()
-        # выполняем сдвиг влево на 21 бит
+
+        # выполняем сдвиг влево на 21 бит и выполняем побитовое Исключаеющее ИЛИ (XOR) и исходным значениме
         rand_number ^= (rand_number << 21)
+
+        # выполняем сдвиг вправо на 35 бита и выполняем побитовое Исключаеющее ИЛИ (XOR) и исходным значениме
         rand_number ^= (rand_number >> 35)
+
+        # выполняем сдвиг влево на 4 бита и выполняем побитовое Исключаеющее ИЛИ (XOR) и исходным значениме
         rand_number ^= (rand_number << 4)
 
         rand_number %= end
@@ -36,5 +41,5 @@ def random(start, end):
 
 
 for i in range(1, 10):
-    time.sleep(0.005)
-    print(f'{random(50, 100)}', end=' ')
+    time.sleep(0.015)
+    print(f'{random(0, 25)}', end=' ')
