@@ -35,5 +35,4 @@ def display(vals):
 
 display(numbers)
 display(nums)
-
 display([1, 2, 4, 8, 16, 32, 16, 8, 4, 2, 1])
