@@ -8,9 +8,9 @@ N = 30 -> [2, 3, 5]
 
 def is_prime(n):
     """
-    Функци которая определяет число простое или ре простое
-    :param n: Проверяемое число на то что является простым илил нет
-    :return: Возврат булевого значения, является чилос простое или нет
+    Функция которая определяет число простое или не простое
+    :param n: Проверяемое число на то, что является простым или нет
+    :return: True если число простое, False - если не простое
     """
     d = 2
     while n % d != 0:
@@ -19,11 +19,24 @@ def is_prime(n):
 
 n = 30
 
-def get_prime(value):
+def get_prime_multiplier(value):
+    """
 
+    :param value:
+    :return:
+    """
     for i in range(2, value):
         if not value % i and is_prime(i):
             yield i
 
-data = list(get_prime(n))
-print(data)
+n = 20
+data = list(get_prime_multiplier(n))
+print(f'N = {n} -> {data}')
+
+n = 30
+data = list(get_prime_multiplier(n))
+print(f'N = {n} -> {data}')
+
+n = 17092022
+data = list(get_prime_multiplier(n))
+print(f'N = {n} -> {data}')
