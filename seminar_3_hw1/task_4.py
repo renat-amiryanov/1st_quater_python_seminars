@@ -8,14 +8,23 @@
 3 -> 11
 2 -> 10
 """
-bin()
-n = 45
-def dec_to_bin(n):
-    bin_str = ''
-    while not n == 0:
-        res = n % 2
-        n //= 2
-        bin_str += str(res)
-    return bin_str
 
-print(dec_to_bin(50))
+
+def int_to_bin(data):
+    bin_str = ''
+    while not data == 0:
+        res = data % 2
+        data //= 2
+        bin_str += str(res)
+    return bin_str[::-1]
+
+
+n = 45
+print(n, '->', int_to_bin(n))
+
+n = 3
+print(n, '->', int_to_bin(n))
+
+n = 2
+print(n, '->', int_to_bin(n))
+
