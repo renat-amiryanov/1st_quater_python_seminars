@@ -21,7 +21,7 @@ n = 30
 
 def get_prime_multiplier(value):
     """
-
+    Функция список простых множителей числа
     :param value:
     :return:
     """
