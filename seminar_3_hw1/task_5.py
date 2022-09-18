@@ -9,16 +9,30 @@
 
 def fib(value):
     """
-    Функция которая расчитывает число фибоначчи
+    Функция генератор которая возвращает значение как только встречается ключеове слово yield
+    из цикла
     :param value:
     :return:
     """
-    a, b = -1, 1
+    f1, f2 = 1, 1
+    yield 0
     for i in range(value):
-        yield a
-        a, b = b, a + b
+        yield f1
+        f1, f2 = f2, f1 + f2
+
+
+def nega_fib(value):
+    """
+    :param value:
+    :return:
+    """
+    f1, f2 = 1, -1
+    for i in range(value):
+        yield f1
+        f1, f2 = f2, f1 - f2
 
 
 k = 8
-data = list(fib(k))
-print(data)
+fib = list(fib(k))
+n_fib = list(nega_fib(k))[::-1]
+print(f'{k=}: {n_fib + fib}')
