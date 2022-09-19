@@ -27,6 +27,7 @@ def enccrypt(text, k):
     print('[+] Encryption done!')
     return enc_string
 
+
 def decrypt(text, k):
     alphabet = '1йфя2цыч3увс4кам5епи6нрт7гоь8шлб9щдю0зжхъ.,?!ЙФЯЦЫЧУВСКАМЕПИНРТГОЬШЛБЩДЮЗЖХЭЪ"- '
     dec_string = ''
@@ -42,6 +43,7 @@ def decrypt(text, k):
         print('[-] Decryption failed!')
     print('[+] Decryption done!')
     return dec_string
+
 
 encrypted_text = enccrypt(origin_text,key)
 print(origin_text, encrypted_text)
