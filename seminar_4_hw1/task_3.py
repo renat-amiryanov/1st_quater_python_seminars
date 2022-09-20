@@ -17,24 +17,41 @@
 Анастасия Пономарева 4
 """
 
-import re
 
 file_name = 'students_scores.txt'
-score = 5.
-# with open(file_name, 'r', encoding='utf-8') as file:
-#     data = list()
-#     for line in file:
-#         print(line.replace('\n',''))
-#         data.append(line.splitlines())
-#         # data.append(re.split('(\d+)', line))
-#
-#
-# print(data)
+score = 5
 
-file_string = '''Ангела Меркель 5\nАндрей Валетов 5\nФредди Меркури 3\nАнастасия Пономарева 4'''
+# def file_reader(file):
+#     data = {}
+#     with open(file, 'r', encoding='utf-8') as file:
+#         for f in file:
+#             f = f.split(' ')
+#             f[-1] = f[-1].replace('\n', '')
+#             file = " ".join(f[0:2])
+#             mark = f[2]
+#             data[file] = mark
+#     return data
 
-print(file_string)
-print(file_string.split('\n'))
+# def chage(dic):
+#     chan = {}
+#     for key, value in dic.items():
+#         if int(value) > 4:
+#             student = key.upper()
+#             chan[student] = value
+#         else:
+#             chan[key] = value
+#     return chan
 
-print(file_string2)
+# def file_writer(file,dic):
+#     with open(file,'w', encoding='utf-8') as file:
+#         for key, value in dic.items():
+#             file.write(f'{key} {value}\n')
+
+# print(file_reader(file_name))
+# print(chage(file_reader(file_name)))
+# file_writer('students_scores.txt', chage(file_reader(file_name)))
+
+with open(file_name, 'r', encoding='utf-8') as wa_file:
+    lines = [line.rstrip() for line in wa_file]
+    print(lines)
 
