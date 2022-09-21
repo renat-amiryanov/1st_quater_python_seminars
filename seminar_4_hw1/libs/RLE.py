@@ -24,11 +24,13 @@ def compress(message):
 
 def uncompress(message):
     uncompressed_message = ''
-    i = 0
+    i = j = 0
     length = len(message)
-    while i <= length - 1:
+    while i <= length-1:
         count = int(message[i])
-        ch = str(message[i + 1])
-        uncompressed_message += ch * count
-        i += count-1
+        ch = str(message[i+1])
+        for j in range(count):
+            uncompressed_message += ch
+            j +=1
+        i += 2
     return uncompressed_message
