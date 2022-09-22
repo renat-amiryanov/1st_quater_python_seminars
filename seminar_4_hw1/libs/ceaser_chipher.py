@@ -1,6 +1,7 @@
 alphabet_ru = 'АБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзиклмнопрстуфхцчшщъыьэюя'
 alphabet_en = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 alphabet_symbols = ',./-*/!@#$%^&*()_+=-| '
+alphabet_digits = '0123456789'
 
 
 def encrypt(message, offset):
@@ -16,6 +17,9 @@ def encrypt(message, offset):
         elif ch in alphabet_symbols:
             pos = alphabet_symbols.index(ch)
             enc_message += alphabet_symbols[(pos + offset) % len(alphabet_symbols)]
+        elif ch in alphabet_digits:
+            pos = alphabet_digits.index(ch)
+            enc_message += alphabet_digits[(pos + offset) % len(alphabet_digits)]
     return enc_message
 
 
@@ -33,5 +37,9 @@ def decrypt(message, offset):
         elif ch in alphabet_symbols:
             pos = alphabet_symbols.index(ch)
             dec_message += alphabet_symbols[(pos - offset) % len(alphabet_symbols)]
+
+        elif ch in alphabet_digits:
+            pos = alphabet_digits.index(ch)
+            dec_message += alphabet_digits[(pos - offset) % len(alphabet_digits)]
 
     return dec_message
