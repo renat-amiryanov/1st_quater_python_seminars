@@ -18,40 +18,55 @@
 """
 
 
-file_name = 'students_scores.txt'
-score = 5
+def read_from_file(file):
+    """
+    Функция чтения из файла данных и возврата данных в словаре
 
-# def file_reader(file):
-#     data = {}
-#     with open(file, 'r', encoding='utf-8') as file:
-#         for f in file:
-#             f = f.split(' ')
-#             f[-1] = f[-1].replace('\n', '')
-#             file = " ".join(f[0:2])
-#             mark = f[2]
-#             data[file] = mark
-#     return data
+    :param file:Имя фойла откуда читаем данные
+    :return: возврат словаря
+    """
+    data = {}
+    with open(file, 'r', encoding='utf-8') as file:
+        for f in file:
+            f = f.split(' ')
+            f[-1] = f[-1].replace('\n', '')
+            file = " ".join(f[0:2])
+            mark = f[2]
+            data[file] = mark
+    return data
 
-# def chage(dic):
-#     chan = {}
-#     for key, value in dic.items():
-#         if int(value) > 4:
-#             student = key.upper()
-#             chan[student] = value
-#         else:
-#             chan[key] = value
-#     return chan
 
-# def file_writer(file,dic):
-#     with open(file,'w', encoding='utf-8') as file:
-#         for key, value in dic.items():
-#             file.write(f'{key} {value}\n')
+def modify_data(dic):
+    """
+    Функция измения на прописные буквы фамилии тех студентов,
+    которые имеют средний балл более «4».
 
-# print(file_reader(file_name))
-# print(chage(file_reader(file_name)))
-# file_writer('students_scores.txt', chage(file_reader(file_name)))
+    :param dic: Исходный словарь с данными
+    :return: Изменненый словарь
+    """
+    data_dic = {}
+    for key, value in dic.items():
+        if int(value) > 4:
+            student = key.upper()
+            data_dic[student] = value
+        else:
+            data_dic[key] = value
+    return data_dic
 
-with open(file_name, 'r', encoding='utf-8') as wa_file:
-    lines = [line.rstrip() for line in wa_file]
-    print(lines)
 
+def write_to_file(file, dic):
+    """
+    Функция записи данных в файл
+    :param file: Имя файла для записи
+    :param dic: Словать который пишем в файл
+    :return:
+    """
+    with open(file, 'w', encoding='utf-8') as file:
+        for key, value in dic.items():
+            file.write(f'{key} {value}\n')
+
+
+file_with_data = 'students_scores.txt'
+data_from_file = read_from_file(file_with_data)
+modified_data = modify_data(data_from_file)
+write_to_file(file_with_data, modified_data)
