@@ -37,6 +37,8 @@ def compress_rle(source, target):
         file.write(compressed_content)
         print(f'[+] - данные записаны')
     print(f'Конец работы функции compress_rle()\n')
+
+
 def uncompress_rle(source, target):
     """
     Функция восттановления данных сжатых RLE алгоритмом
@@ -59,6 +61,7 @@ def uncompress_rle(source, target):
         file.write(uncompressed_content)
         print(f'[+] - данные записаны')
     print(f'Конец работы функции uncompress_rle()\n')
+
 
 compress_rle(source_file, target_file)
 uncompress_rle(target_file, target_file1)
