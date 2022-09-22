@@ -44,6 +44,10 @@ def read_from_file(file_name='text.enc'):
     except:
         print(f'[-] - Чтение данных не выполнено ')
 def brute_force():
+    """
+    Функция ручного подбора ключа для расшивровывания сообщения
+    :return:
+    """
 
     is_right = False
     print('Попытаемся расшифровать шифрованное сообщение. )')
@@ -68,10 +72,7 @@ def brute_force():
     print('Выход из программы')
 
 def encrypt():
-    """
-    Функция
-    :return:
-    """
+
     origin_text = input('Введите сообщение для шифрованиня: ')
 
     with open('original.txt', 'w', encoding='utf-8') as f:
