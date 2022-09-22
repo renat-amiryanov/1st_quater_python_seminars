@@ -45,6 +45,7 @@ def modify_data(dic):
     :return: Изменненый словарь
     """
     data_dic = {}
+
     for key, value in dic.items():
         if int(value) > 4:
             student = key.upper()
@@ -66,7 +67,16 @@ def write_to_file(file, dic):
             file.write(f'{key} {value}\n')
 
 
+def display(file):
+    with open(file, 'r', encoding='utf-8') as file:
+        for f in file:
+            print(f.rsplit('\n')[0])
+        print()
+
+
 file_with_data = 'students_scores.txt'
+display(file_with_data)
 data_from_file = read_from_file(file_with_data)
 modified_data = modify_data(data_from_file)
 write_to_file(file_with_data, modified_data)
+display(file_with_data)

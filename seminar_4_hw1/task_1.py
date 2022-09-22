@@ -6,6 +6,7 @@ N = 20 -> [2,5]
 N = 30 -> [2, 3, 5]
 """
 
+
 def is_prime(n):
     """
     Функция которая определяет число простое или не простое
@@ -17,7 +18,9 @@ def is_prime(n):
         d += 1
     return d == n
 
+
 n = 30
+
 
 def get_prime_multiplier(value):
     """
@@ -28,6 +31,7 @@ def get_prime_multiplier(value):
     for i in range(2, value):
         if not value % i and is_prime(i):
             yield i
+
 
 n = 20
 data = list(get_prime_multiplier(n))
