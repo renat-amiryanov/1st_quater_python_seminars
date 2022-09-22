@@ -7,48 +7,46 @@
 считывает текст и дешивровывает его.
 """
 
-
-# alphabet = '1йфя2цыч3увс4кам5епи6нрт7гоь8шлб9щдю0зжхъ '
-origin_text = 'папа'
-encrypted_text = None
-key = 2
+# Импортируем  модуль
+from libs import ceaser_chipher
 
 
-def enccrypt(text, k):
-    alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-    enc_string = ''
-    text = text.replace('\n','')
-    for t in text:
-        orig_pos = alphabet.index(t)
-        enc_pos = orig_pos + k
-        if enc_pos >= len(alphabet):
-            enc_pos = 0
-        enc_string += alphabet[enc_pos]
-    print('[+] Encryption done!')
-    return enc_string
+def display(msg):
+    print(f'Расшифрованный текст: {msg}')
 
 
-def decrypt(text, k):
-    alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-    dec_string = ''
-    text = text.replace('\n','')
-    try:
-        for t in text:
-            orig_pos = alphabet.index(t)
-            dec_pos = orig_pos - k
-            if dec_pos <= 0:
-                dec_pos = len(alphabet)-1
-            dec_string += alphabet[dec_pos]
-    except:
-        print('[-] Decryption failed!')
-    print('[+] Decryption done!')
-    return dec_string
+def write_to_file(message, file_name='text.enc'):
+    """
+    Функция записи в файл
+
+    :param message: Данные который нужно записать в файл
+    :param file_name: Имя файла для записи данных
+    :return:
+    """
+    with open(file_name, 'w', encoding='utf-8') as f:
+        f.write(message)
 
 
-encrypted_text = enccrypt(origin_text,key)
-print('Исходный текст: ', origin_text)
-print('Зашифрованный текст: ', encrypted_text)
-decrypted_text = decrypt(encrypted_text,key)
-print('Зашифрованный текст: ', encrypted_text)
-print('Расшифрованный текст: ', decrypted_text)
+def read_from_file(file_name='text.enc'):
+    """
+    Функция чтения данных из файла
 
+    :param file_name: Имя файла откуда еа
+    :return:
+    """
+    with open(file_name, 'r', encoding='utf-8') as f:
+        return f.read()
+
+
+def brute_force():
+    while True:
+        key = int(input('Введите ключ для расшифровки: '))
+        data = read_from_file()
+        decrypt = ceaser_chipher.decrypt(data, key)
+        display(f'Ключ {key} ->{decrypt}')
+
+origin_text = input('Введите текст который хотите зашифровать: ')
+key = int(input('Введите ключ шифрования: '))
+enc_text = ceaser_chipher.encrypt(origin_text, key)
+write_to_file(enc_text)
+brute_force()
