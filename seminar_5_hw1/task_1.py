@@ -33,16 +33,24 @@ demo()
 
 
 def do_it():
+
     print('Программа удаления из текста все слова содержашие подстроку.')
     message = input("Введите текст: ")
     sub = input("Введите подстроку: ")
+
     if not message and not sub:
         print("Ничего не введено. Программа завершает свою работу.")
         return
+
+    before = len(message.split())
     output = remove_strings_contains_sub_string(message, sub)
+    after = len(output.split())
+
+    print(f"Кол-во удалленных: {before - after} ")
     print("Результат: ", end='')
     print(''.join([output if len(output) > 0 else 'Все слова удалены.']))
     print("Конец программы.")
 
 
 do_it()
+
