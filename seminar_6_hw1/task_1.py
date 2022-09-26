@@ -12,13 +12,13 @@ def my_func(words):
     :return:
     """
 
-    return [(word, ch) for word in words for ch in word if ch.isdigit()]
+    return [word for word in words for ch in word if ch.isdigit()]
 
 def display():
     user_input = str.split(input('Введите текст: '))
     res = my_func(user_input)
     if(len(res)!=0):
-        print(f'Заданном списке строк имеются числа в словах {" ".join([str(el[0]) for el in res])}')
+        print(f'Заданном списке строк имеются числа в словах {" ".join([str(el) for el in res])}')
     else:
         print('В заданном списке строк, числа отсутствуют.')
 

@@ -4,7 +4,7 @@
 """
 
 numbers = [10, 21, 4, 45, 66, 93, 11]
-numbers1 = [1, 2, 3, 5 ]
+numbers1 = [1, 2, 3, 5]
 
 
 def sum_odds(lst):
