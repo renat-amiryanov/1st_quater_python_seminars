@@ -7,7 +7,8 @@
 [+] - первая из которых создаст список кортежей, состоящих из номера и языка,
 написанного большими буквами.
 [(1,'PYTHON'), (2,'C#')]
-Вторая — которая отфильтрует этот список следующим образом:
+Вторая —
+которая отфильтрует этот список следующим образом:
 если сумма очков слова имеет в делителях номер,с которым она в паре в кортеже,
 то кортеж остается, его номер заменяется на сумму очков.
 [сумма очков c# = 102, в делителях есть 2 с которым в паре. Значит список будет]
@@ -18,8 +19,6 @@
 Cложите получившиеся числа и верните из функции в качестве ответа вместе с преобразованным списком
 
 """
-langs = ['python', 'c#']
-nums = [i for i in range(1, len(langs) + 1)]
 
 
 def create_list_of_tuples(list1, list2):
@@ -42,6 +41,11 @@ def get_sum_of_codes(value):
     return sum([ord(ch) for ch in value])
 
 
-langs_and_nums = create_list_of_tuples(nums, langs) # Output: [(1, 'PYTHON'), (2, 'C#')]
-sums = list(map(get_sum_of_codes,[l.upper() for l in langs])) # Output: [482, 102]
+langs = ['python', 'c#', 'ABAP', 'Java', 'Go']
+nums = [i for i in range(1, len(langs) + 1)]
+
+langs_and_nums = create_list_of_tuples(nums, langs)  # Output: [(1, 'PYTHON'), (2, 'C#'),...]
+print(langs_and_nums)
+
+sums = list(map(get_sum_of_codes, [l.upper() for l in langs]))  # Output: [482, 102,...]
 print(sums)
