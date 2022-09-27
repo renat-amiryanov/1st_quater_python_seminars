@@ -46,7 +46,7 @@ def do_it():
     output = remove_strings_contains_sub_string(message, sub)
     after = len(output.split())
 
-    print(f"Кол-во удалленных: {before - after} ")
+    print(f"Кол-во удаленных: {before - after} ")
     print("Результат: ", end='')
     print(''.join([output if len(output) > 0 else 'Все слова удалены.']))
     print("Конец программы.")
