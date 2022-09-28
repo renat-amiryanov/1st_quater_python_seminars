@@ -18,18 +18,24 @@ game_name = 'Игра в конфеты'
 total_amount_of_candy = 2021  #
 max_candies = 28
 total_amount_of_candy = int(input("Задайте количество конфет: "))
+max_candies = int(input("Задайте макс. количество конфет которое можно взять за 1 ход^ "))
 players_number = int(input("Сколько игроков желает играть? "))
 players = []
+is_finish = False
+
 for i in range(players_number):
     players.append(input(f'Введите имя {i} игрока: '))
-is_finish = False
+
+print(f'На столе лежит {total_amount_of_candy} конфет.')
+
 while not is_finish:
     for player in players:
-        candies = int(input(f'{player} конфет возьмешь: '))
+        candies = int(input(f'{player} сколько конфет возьмешь: '))
         total_amount_of_candy -= candies
-        if total_amount_of_candy == 0:
+        print(f'На столе осталось {total_amount_of_candy} конфет.')
+        #
+        if 0 <= total_amount_of_candy <= 1:
             print(f'{player} проиграл.')
-            print('Конец программы')
             is_finish = True
 
-
+print('Конец программы')
