@@ -12,7 +12,7 @@
 если сумма очков слова имеет в делителях номер,с которым она в паре в кортеже,
 то кортеж остается, его номер заменяется на сумму очков.
 [сумма очков c# = 102, в делителях есть 2 с которым в паре. Значит список будет]
-[(1,'PYTHON'), (102,'C#')] C -67, # - 35
+[(1,'PYTHON'), (102,'C#')]
 Если нет — удаляется.
 Суммой очков называется сложение порядковых номеров букв в слове.
 Это — 16-ричная система, поищите, как правильнее и быстрее получать эти символы.
@@ -41,11 +41,23 @@ def get_sum_of_codes(value):
     return sum([ord(ch) for ch in value])
 
 
-langs = ['python', 'c#', 'ABAP', 'Java', 'Go']
-nums = [i for i in range(1, len(langs) + 1)]
+def my_filter(lst_vals):
+    """
+    Функция которая отфильтрует список
 
-langs_and_nums = create_list_of_tuples(nums, langs)  # Output: [(1, 'PYTHON'), (2, 'C#'),...]
-print(langs_and_nums)
+    :param lst_vals: список кортежей
+    :return: измененный список кортежей
+    """
+    return [(get_sum_of_codes(lan), lan) for i, lan in lst_vals if not get_sum_of_codes(lan) % i]
 
-sums = list(map(get_sum_of_codes, [l.upper() for l in langs]))  # Output: [482, 102,...]
-print(sums)
+
+def func(lst_values):
+    print(lst_values)
+    lst_nums = [i for i in range(1, len(lst_values) + 1)]
+    lst_tuples = create_list_of_tuples(lst_nums, lst_values)
+    lst_res = my_filter(lst_tuples)
+    print(lst_res)
+
+
+lst_languages = ['python', 'c#', 'ABAP', 'Java', 'C++', 'Rust', 'pascal', 'visual basic', 'SQl']
+func(lst_languages)
