@@ -17,6 +17,40 @@ expr1 = "2+2"
 expr2 = "1+2*3"
 expr2 = "10/2*5"
 
-expr4 = "(2+((5-3)*(16-14)))/3 "
+expr4 = "(2+((5-3)*(16-14)))/3"
 
-print(eval(expr4))
+# print(eval(expr4))
+#
+# size = len(expr4)
+# empty_element = 0
+# storage = []
+# top = 0
+# print(storage)
+# char = '2'
+# print('[({'.find(char))
+#
+# storage.insert(0, 2)
+# print(storage)
+#
+# storage.insert(0, 2)
+# print(storage)
+
+expr4 = "(2+((5-3)*(16-14)))/3"
+expr1 = "((2+2)/2)"
+expr10 = ''
+
+
+def check(expr: str):
+    storage = []
+    for i in range(len(expr)):
+        cur_char = expr[i]
+        if '('.find(cur_char) != -1:
+            storage.append(cur_char)
+        elif cur_char == ')':
+            storage.pop()
+
+    if len(storage) == 0:
+        return -1
+
+
+
