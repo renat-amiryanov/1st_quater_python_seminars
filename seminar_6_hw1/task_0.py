@@ -20,7 +20,7 @@ def checker(expr):
     stack = []
     expr = expr.replace(' ', '')
     for char in expr:
-        if char.isdigit() or char in ['+', '-', '/', '*']:
+        if char.isdigit() or char in '+-/*':
             continue
         elif char == '(':
             stack.append(char)
@@ -38,10 +38,8 @@ def checker(expr):
 
 def solve(expr):
 
-
     if not checker(expr):
         return 'некорректная запись скобок'
-    
 
 
     expr = list(expr[::-1])
@@ -84,4 +82,4 @@ ex3 = "10/2*5"  # => 25;
 # ex2 = 10 * 5 * #=> недостаточно числовых данных
 
 
-print(solve("(2+((5-3)*(16-14))/3"), eval("(2+((5-3)*(16-14)))/3"))
+print(solve("-5 + 5 "))
