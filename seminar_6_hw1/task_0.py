@@ -13,44 +13,73 @@
 (2+((5-3)*(16-14)))/3 => 2
 (256 - 194 => некорректная запись скобок
 """
-expr1 = "2+2"
-expr2 = "1+2*3"
-expr2 = "10/2*5"
-
-expr4 = "(2+((5-3)*(16-14)))/3"
-
-# print(eval(expr4))
-#
-# size = len(expr4)
-# empty_element = 0
-# storage = []
-# top = 0
-# print(storage)
-# char = '2'
-# print('[({'.find(char))
-#
-# storage.insert(0, 2)
-# print(storage)
-#
-# storage.insert(0, 2)
-# print(storage)
-
-expr4 = "(2+((5-3)*(16-14)))/3"
-expr1 = "((2+2)/2)"
-expr10 = ''
+import math
 
 
-def check(expr: str):
-    storage = []
-    for i in range(len(expr)):
-        cur_char = expr[i]
-        if '('.find(cur_char) != -1:
-            storage.append(cur_char)
-        elif cur_char == ')':
-            storage.pop()
+def checker(expr):
+    stack = []
+    expr = expr.replace(' ', '')
+    for char in expr:
+        if char.isdigit() or char in ['+', '-', '/', '*']:
+            continue
+        elif char == '(':
+            stack.append(char)
+        else:
+            if not stack:
+                return False
+            current = stack.pop()
+            if current == '(':
+                if char != ')':
+                    return False
 
-    if len(storage) == 0:
-        return -1
+    if stack:
+        return False
+    return True
+
+def solve(expr):
 
 
+    if not checker(expr):
+        print('некорректная запись скобок')
 
+    expr = list(expr[::-1])
+
+    def get_value():
+        sign = 1
+        if expr and expr[-1] == '-':
+            expr.pop()
+            sign = -1
+        value = 0
+        while expr and expr[-1].isdigit():
+            value *= 10
+            value += int(expr.pop())
+        return sign * value
+
+    def get_term():
+        term = get_value()
+        while expr and expr[-1] in '*/':
+            op = expr.pop()
+            value = get_value()
+            if op == '*':
+                term *= value
+            else:
+                term = term / value
+        return term
+
+    ans = get_term()
+    while expr:
+        op, term = expr.pop(), get_term()
+        if op == '+':
+            ans += term
+        else:
+            ans -= term
+    return ans
+
+
+ex1 = "2+2"  # => 4;
+ex2 = "2+3*4/3-2"  # => 7;
+ex3 = "10/2*5"  # => 25;
+# ex2 = 10 * 5 * #=> недостаточно числовых данных
+
+
+print(checker("(2+((5-3)*(16-14)))/3"))
