@@ -19,6 +19,8 @@ import math
 def checker(expr):
     stack = []
     expr = expr.replace(' ', '')
+    if expr[0] in '/*!@#$%^&*' or expr[-1] in '/*!@#$%^&*+':
+        return 'недостаточно числовых данных'
     for char in expr:
         if char.isdigit() or char in '+-/*':
             continue
@@ -33,15 +35,11 @@ def checker(expr):
                     return False
 
     if stack:
-        return False
+        return 'некорректная запись скобок'
     return True
 
 def solve(expr):
-
-    if not checker(expr):
-        return 'некорректная запись скобок'
-
-
+    checker(expr)
     expr = list(expr[::-1])
 
     def get_value():
@@ -77,9 +75,15 @@ def solve(expr):
 
 
 ex1 = "2+2"  # => 4;
-ex2 = "2+3*4/3-2"  # => 7;
+ex2 = '1+2*3'
 ex3 = "10/2*5"  # => 25;
-# ex2 = 10 * 5 * #=> недостаточно числовых данных
+ex4 = '10 * 5 *' #=> недостаточно числовых данных
+ex11 ='(256 - 194' # некорректная запись скобок
 
+# print(f'{ex1} => {solve(ex1)}')
+# print(f'{ex2} => {solve(ex2)}')
+# print(f'{ex3} => {solve(ex3)}')
+print(f'{ex4} => {solve(ex4)}')
 
-print(solve("-5 + 5 "))
+# print(f'{ex11} => {checker(ex11)}')
+
