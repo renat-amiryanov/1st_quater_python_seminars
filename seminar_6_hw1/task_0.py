@@ -19,8 +19,10 @@ import math
 def checker(expr):
     stack = []
     expr = expr.replace(' ', '')
-    if expr[0] in '/*!@#$%^&*' or expr[-1] in '/*!@#$%^&*+':
+
+    if expr[0] in '/*!@#$%^&*+' or expr[-1] in '/*!@#$%^&*+':
         return 'недостаточно числовых данных'
+
     for char in expr:
         if char.isdigit() or char in '+-/*':
             continue
@@ -38,8 +40,9 @@ def checker(expr):
         return 'некорректная запись скобок'
     return True
 
+
 def solve(expr):
-    checker(expr)
+    expr = expr.replace(' ', '')
     expr = list(expr[::-1])
 
     def get_value():
@@ -74,16 +77,41 @@ def solve(expr):
     return ans
 
 
-ex1 = "2+2"  # => 4;
-ex2 = '1+2*3'
-ex3 = "10/2*5"  # => 25;
-ex4 = '10 * 5 *' #=> недостаточно числовых данных
-ex11 ='(256 - 194' # некорректная запись скобок
+test1 = '2+2'  # 2+2 => 4;
+test2 = '1+2*3'  # 1+2*3 => 7;
+test3 = '10/2*5'  # 10/2*5 => 25;
+test4 = '10 * 5 '  # 10 * 5 * => недостаточно числовых данных
+test5 = '-5 + 5'  # -5 + 5 => 0
+test6 = 'два + три'  # два + три => неправильный ввод: нужны числа
+test7 = '(2+((5-3)*(16-14)))/3'  # (2+((5-3)*(16-14)))/3 => 2
+test8 = '(256 - 194'  # (256 - 194 => некорректная запись скобок
 
-# print(f'{ex1} => {solve(ex1)}')
-# print(f'{ex2} => {solve(ex2)}')
-# print(f'{ex3} => {solve(ex3)}')
-print(f'{ex4} => {solve(ex4)}')
+# print([ch for ch in test1])
+# print([ch for ch in test2])
+# print([ch for ch in test3])
+# print([ch for ch in test4])
 
-# print(f'{ex11} => {checker(ex11)}')
 
+test1 = '2+2*10'  # 2+2 => 4;
+
+
+def func(expr):
+    r = ['']
+    for i in expr.replace(" ", ''):
+        if i.isdigit() and r[-1].isdigit():
+            r[-1] = r[-1] + i
+        else:
+            r.append(i)
+    return r[1:]
+
+
+####
+
+def parse_number(expr):
+    number_temp = ''
+    i =0
+    while(i <len(expr) and str.isdigit(expr[i])):
+        if str.isdigit(expr[0]):
+            number_temp += expr[0]
+
+print(parse_number(test1))
