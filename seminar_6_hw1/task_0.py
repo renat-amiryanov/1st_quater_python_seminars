@@ -18,28 +18,15 @@ import math
 
 def checker(expr):
     stack = []
-    expr = expr.replace(' ', '')
 
-    if expr[0] in '/*!@#$%^&*+' or expr[-1] in '/*!@#$%^&*+':
-        return 'недостаточно числовых данных'
-
-    for char in expr:
-        if char.isdigit() or char in '+-/*':
-            continue
-        elif char == '(':
-            stack.append(char)
-        else:
-            if not stack:
-                return False
-            current = stack.pop()
-            if current == '(':
-                if char != ')':
-                    return False
-
+    for i in range(len(expr)):
+        if expr[i] == '(':
+            stack.append(expr[i])
+        elif expr[i] == ')':
+            stack.pop()
     if stack:
-        return 'некорректная запись скобок'
+        return False
     return True
-
 
 def solve(expr):
     expr = expr.replace(' ', '')
@@ -86,32 +73,117 @@ test6 = 'два + три'  # два + три => неправильный вво�
 test7 = '(2+((5-3)*(16-14)))/3'  # (2+((5-3)*(16-14)))/3 => 2
 test8 = '(256 - 194'  # (256 - 194 => некорректная запись скобок
 
-# print([ch for ch in test1])
-# print([ch for ch in test2])
-# print([ch for ch in test3])
-# print([ch for ch in test4])
+
+def get_op_priority(operation):
+    """
+    Функция которая возвращает приоритет операции
+
+    """
+    if operation == '^': return 4
+    if operation == '*' or operation == '/': return 3
+    if operation == '+' or operation == '-': return 2
+    return 0
 
 
-test1 = '2+2*10'  # 2+2 => 4;
+def compute(a, b, operation):
+    """
+    Функкция которая выполняет метематический операции
+    """
+    if operation == '^': return a ^ b
+    if operation == '*': return a * b
+    if operation == '/': return a / b
+    if operation == '+': return a + b
+    if operation == '-': return a - b
 
 
-def func(expr):
-    r = ['']
-    for i in expr.replace(" ", ''):
-        if i.isdigit() and r[-1].isdigit():
-            r[-1] = r[-1] + i
+def solver(expression):
+
+    # список для хранения номеров из выражения
+    values = []
+
+    # списко для хранениея операций
+    operators = []
+    i = 0
+
+    if not checker(expression): return "некорректная запись скобок"
+
+    if expression[0] == '-':
+        val = 0
+        i = 1
+        while i <= len(expression) and expression[i].isdigit():
+            val = (val * 10) + int(expression[i])
+            i += 1
+
+        values.append(-1 * val)
+
+    while i < len(expression):
+
+        if expression[i] == ' ':
+            i += 1
+            continue
+
+        elif expression[i] == '(':
+            operators.append(expression[i])
+
+        elif expression[i].isdigit():
+            val = 0
+            while i < len(expression) and expression[i].isdigit():
+                val = (val * 10) + int(expression[i])
+                i += 1
+            values.append(val)
+            i -= 1
+        elif expression[i] == ')':
+            while len(operators) != 0 and operators[-1] != '(':
+                val2 = values.pop()
+                val1 = values.pop()
+                operator = operators.pop()
+
+                values.append(compute(val1, val2, operator))
+            operators.pop()
+
         else:
-            r.append(i)
-    return r[1:]
+            while (len(operators) != 0
+                   and get_op_priority(operators[-1]) >= get_op_priority(expression[i])):
+                val2 = values.pop()
+                val1 = values.pop()
+                operator = operators.pop()
+
+                values.append(compute(val1, val2, operator))
+            operators.append(expression[i])
+        i += 1
+    while len(operators) != 0:
+        val2 = values.pop()
+        val1 = values.pop()
+        operator = operators.pop()
+
+        values.append(compute(val1, val2, operator))
+    return values[-1]
 
 
-####
 
-def parse_number(expr):
-    number_temp = ''
-    i =0
-    while(i <len(expr) and str.isdigit(expr[i])):
-        if str.isdigit(expr[0]):
-            number_temp += expr[0]
 
-print(parse_number(test1))
+test1 = '2+2'  # 2+2 => 4;
+test2 = '1+2*3'  # 1+2*3 => 7;
+test3 = '10/2*5'  # 10/2*5 => 25;
+test4 = '10 * 5 *'  # 10 * 5 * => недостаточно числовых данных
+test5 = '-5 + 5'  # -5 + 5 => 0
+test6 = 'два + три'  # два + три => неправильный ввод: нужны числа
+test7 = '(2+((5-3)*(16-14)))/3'  # (2+((5-3)*(16-14)))/3 => 2
+test8 = '(256 - 194'  # (256 - 194 => некорректная запись скобок
+#
+res = solver(test1)
+print(f'{test1} => {res}')
+res = solver(test2)
+print(f'{test2} => {res}')
+res = solver(test3)
+print(f'{test3} => {res}')
+res = solver(test5)
+print(f'{test5} => {res}')
+res = solver(test7)
+print(f"{test7} => {res}")
+res = solver(test8)
+print(f"{test8} => {res}")
+
+# user_expression = input("Enter expression, please: ")
+# print(checker(test7))
+# print(f"{user_expression} => {solver(user_expression)}")
