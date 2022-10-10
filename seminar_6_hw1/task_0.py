@@ -28,6 +28,10 @@ def checker(expr):
         return False
     return True
 
+
+# def is_correct_input(expr):
+
+
 def solve(expr):
     expr = expr.replace(' ', '')
     expr = list(expr[::-1])
@@ -97,7 +101,6 @@ def compute(a, b, operation):
 
 
 def solver(expression):
-
     # список для хранения номеров из выражения
     values = []
 
@@ -106,7 +109,8 @@ def solver(expression):
     i = 0
 
     if not checker(expression): return "некорректная запись скобок"
-
+    if expression[-1] in '+-*/%^': return "недостаточно числовых данных"
+    
     if expression[0] == '-':
         val = 0
         i = 1
@@ -160,8 +164,6 @@ def solver(expression):
     return values[-1]
 
 
-
-
 test1 = '2+2'  # 2+2 => 4;
 test2 = '1+2*3'  # 1+2*3 => 7;
 test3 = '10/2*5'  # 10/2*5 => 25;
@@ -181,9 +183,9 @@ res = solver(test5)
 print(f'{test5} => {res}')
 res = solver(test7)
 print(f"{test7} => {res}")
+res = solver(test4)
+print(f"{test4} => {res}")
 res = solver(test8)
 print(f"{test8} => {res}")
 
-# user_expression = input("Enter expression, please: ")
-# print(checker(test7))
-# print(f"{user_expression} => {solver(user_expression)}")
+
