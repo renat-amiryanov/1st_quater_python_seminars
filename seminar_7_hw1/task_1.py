@@ -5,37 +5,17 @@
 Эта задача командная
 
 """
+import re
+
 import complex_number
 
-a = '3+2i'
-b = '3+2'
-# mult = complex_number.mult(a, b)
+a = '3+2j'
+b = '3+2j'
+mult = complex_number.mult(a, b)
 # add = complex_number.add(a, b)
 # sub = complex_number.sub(a, b)
 
-# print(mult)
-# print(add)
-# print(sub)
+print(mult, complex(a)*complex(b))
+# print(add, complex(a)+complex(b))
+# print(sub,complex(a)-complex(b))
 
-def f(expr):
-    sign = []
-    numbers = []
-    i = 0
-    while i < len(expr):
-        if expr[i] == '-':
-            sign.append(expr[i])
-        elif expr[i].isdigit() and sign:
-            val = sign.pop() + expr[i]
-            numbers.append(val)
-        elif expr[i].isdigit():
-            j = 0
-            val=0
-            while j < len(expr) and expr[j].isdigit():
-                val = (val * 10) + int(expr[j])
-                j += 1
-            numbers.append(val)
-        i += 1
-    return numbers
-
-
-print(f(b))
