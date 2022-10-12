@@ -9,7 +9,7 @@ import re
 
 import complex_number
 
-a = '3+2j'
+a = '-3-2j'
 b = '3+2j'
 mult = complex_number.mult(a, b)
 # add = complex_number.add(a, b)
